@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: Password!23
+      POSTGRES_DB: template-go
+    ports:
+      - 5432:5432

@@ -1,0 +1,97 @@
+basePath: /
+definitions:
+  domain.CreateUserRequest:
+    properties:
+      email:
+        type: string
+      password:
+        maxLength: 32
+        minLength: 8
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - password
+    - username
+    type: object
+  domain.CreateUserResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      username:
+        type: string
+    type: object
+  main.HealthResponse:
+    properties:
+      status:
+        type: string
+    type: object
+host: localhost:5000
+info:
+  contact: {}
+  description: This is a sample swagger for Fiber
+  title: Template Go
+  version: "1.0"
+paths:
+  /api/health:
+    get:
+      consumes:
+      - application/json
+      description: Get system health.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.HealthResponse'
+      summary: Get system health
+      tags:
+      - System
+  /api/v1/user:
+    post:
+      consumes:
+      - application/json
+      description: Creates an user
+      parameters:
+      - description: create user request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/domain.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.CreateUserResponse'
+      summary: Creates an user
+      tags:
+      - User
+  /api/v1/user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Gets an user
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CreateUserResponse'
+      summary: Gets an user
+      tags:
+      - User
+swagger: "2.0"
