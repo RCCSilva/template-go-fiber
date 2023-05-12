@@ -5,7 +5,7 @@ definitions:
       email:
         type: string
       password:
-        maxLength: 32
+        maxLength: 72
         minLength: 8
         type: string
       username:
